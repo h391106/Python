@@ -1,0 +1,68 @@
+#import os
+#import subprocess
+#import sys
+import re
+import json
+
+l_read = open("D:\MYDOC\GitHub\Python\message.txt", "r")
+#
+for x in l_read:
+ urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', x)
+ print(urls)
+#
+#
+l_read.close()
+
+
+
+# JSON START
+
+l_json = json.dumps({
+    "@type": "MessageCard",
+    "@context": "http://schema.org/extensions",
+    "themeColor": "0076D7",
+    "summary": "alarms from send_mail.sh",
+    "sections": [{
+        "activityTitle": "TRAVEL Alarms",
+        "activitySubtitle": "from send_mail.sh",
+        "facts": [{
+            "name": "TIME",
+            "value": "${TIME}"
+        }, {
+            "name": "HOST_NAME",
+            "value": "${HOST_NAME}"
+        }, {
+            "name": "TARGET_NAME",
+            "value": "${TARGET_NAME}"
+        }, {
+            "name": "LEVEL",
+            "value": "${LEVEL}"
+        }, {
+            "name": "MESSAGE",
+            "value": "${MESSAGE}"
+        }, {
+            "name": "SEQUENCE_ID",
+            "value": "${SEQUENCE_ID}"
+        }],
+        "markdown": "true"
+    }],
+    "potentialAction": [{
+        "@type": "OpenUri",
+        "name": "SCRIPT SPEC",
+        "targets": [
+            { "os": "default", "uri": "${TARGET_URL}" }
+        ]
+    },{
+        "@type": "OpenUri",
+        "name": "RUNBOOK",
+        "targets": [
+            { "os": "default", "uri": "https://confluence.rakuten-it.com/confluence/x/xs4Ua" }
+        ]
+    }]
+}, sort_keys=True, indent=4)
+
+# JSON END
+
+# https://medium.com/python-pandemonium/json-the-python-way-91aac95d4041
+
+print (l_json)

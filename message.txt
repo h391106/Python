@@ -1,0 +1,7 @@
+Script path         : /home/oracle/tools/travel/Scripts/cron_extra/gg_check_ext/gg_check_ext.sh
+Specification sheet : https://confluence.rakuten-it.com/confluence/x/7Fv_Yg
+Contact             : DbaTRAVEL
+
+Current checkpoint ~ Current time gap exceeded 55662 sec.
+Please check status of extract and heavy duty user sessions on the DBMS.
+Executed time: 2019/05/30 08:50:07
